@@ -1,0 +1,49 @@
+﻿[33mÔØ»[39m Building...
+npx : [31mÔ£û[39m 
+Building... 
+[31m[FAILED: Inlining 
+of fonts failed. An 
+error has occurred 
+while retrieving https:
+//fonts.googleapis.com/
+css2?family=Montserrat:
+wght@400;500;600;700;80
+0;900&family=Inter:wght
+@300;400;500;600;700&di
+splay=swap over the 
+internet.
+No linha:1 caractere:1
++ npx ng build 2>&1 | 
+Out-File -Encoding 
+UTF8 C:\Users\Jose\sour
+ce\repo ...
++ ~~~~~~~~~~~~~~~~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: ([31mÔ£û[39m   
+  B...r the interne    
+t.:String) [], Rem    
+oteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+][39m
+[1m[31mAn unhandled 
+exception occurred: 
+Inlining of fonts 
+failed. An error has 
+occurred while 
+retrieving https://font
+s.googleapis.com/css2?f
+amily=Montserrat:wght@4
+00;500;600;700;800;900&
+family=Inter:wght@300;4
+00;500;600;700&display=
+swap over the internet.
+
+See "C:\Users\Jose\AppD
+ata\Local\Temp\ng-0Qbnf
+L\angular-errors.log" 
+for further 
+details.[39m[22m

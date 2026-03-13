@@ -1,0 +1,505 @@
+import { Injectable, signal, computed } from '@angular/core';
+
+export type Lang = 'pt' | 'es' | 'en';
+
+export interface LangOption {
+    code: Lang;
+    label: string;
+    flagId: string;
+}
+
+@Injectable({ providedIn: 'root' })
+export class I18nService {
+    readonly langs: LangOption[] = [
+        { code: 'pt', label: 'Português', flagId: 'br' },
+        { code: 'es', label: 'Español', flagId: 'py' },
+        { code: 'en', label: 'English', flagId: 'us' },
+    ];
+
+    readonly currentLang = signal<Lang>('pt');
+
+    setLang(lang: Lang): void {
+        this.currentLang.set(lang);
+        if (typeof document !== 'undefined') {
+            document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang === 'es' ? 'es' : 'en';
+        }
+    }
+
+    t(key: string): string {
+        const lang = this.currentLang();
+        const section = translations[lang];
+        return (section as any)?.[key] ?? key;
+    }
+}
+
+const translations: Record<Lang, Record<string, string>> = {
+    // ───────────────────────────────────────
+    // PORTUGUÊS BRASILEIRO
+    // ───────────────────────────────────────
+    pt: {
+        // Nav
+        'nav.services': 'Serviços',
+        'nav.projects': 'Projetos',
+        'nav.capabilities': 'Capacidade',
+        'nav.safety': 'Segurança',
+        'nav.about': 'Sobre',
+        'nav.contact': 'Contato',
+        'nav.request': 'Solicitar Proposta',
+
+        // Hero
+        'hero.tag': 'Excelência em Engenharia',
+        'hero.h1.1': 'Engenharia Industrial',
+        'hero.h1.2': 'e Construção',
+        'hero.h1.3': 'com Entrega Comprovada',
+        'hero.sub': 'Montagem eletromecânica, revamp de tanques e construção industrial em toda a América Latina. Confiança dos líderes da indústria.',
+        'hero.cta1': 'Solicitar Proposta Técnica',
+        'hero.cta2': 'Agendar Consultoria',
+        'hero.years': 'Anos de Experiência',
+        'hero.tons': 'Toneladas Montadas',
+        'hero.welds': 'Juntas Soldadas',
+        'hero.countries': 'Países',
+
+        // Client Trust
+        'trust.tag': 'Parceiros de Confiança',
+        'trust.title': 'Empresas Industriais que Confiam em Nós',
+
+        // Services
+        'svc.tag': 'O Que Fazemos',
+        'svc.title': 'Serviços de Engenharia Industrial',
+        'svc.sub': 'Capacidades completas de engenharia e construção industrial com precisão e segurança em ambientes complexos.',
+        'svc.1.title': 'Montagem Eletromecânica',
+        'svc.1.desc': 'Instalação eletromecânica completa para plantas industriais, terminais de combustíveis e unidades fabris. Integração precisa de sistemas elétricos e mecânicos.',
+        'svc.2.title': 'Montagem Mecânica',
+        'svc.2.desc': 'Montagem de estruturas metálicas, instalação de equipamentos pesados e integração de sistemas mecânicos para ambientes industriais complexos.',
+        'svc.3.title': 'Revamp de Tanques Industriais',
+        'svc.3.desc': 'Reabilitação completa de tanques incluindo avaliação estrutural, substituição de chapas, aplicação de revestimentos e conformidade regulatória.',
+        'svc.4.title': 'Tubulação Industrial',
+        'svc.4.desc': 'Instalação, fabricação e testes de sistemas de tubulação industrial em plantas de processo, terminais e bases de distribuição. Mais de 30 km instalados.',
+        'svc.5.title': 'Infraestrutura Elétrica',
+        'svc.5.desc': 'Distribuição de energia, roteamento de cabos, instrumentação e instalação de sistemas de controle. Infraestrutura de fibra óptica integrada.',
+        'svc.6.title': 'Consultoria de Engenharia',
+        'svc.6.desc': 'Consultoria técnica, suporte para comissionamento, gerenciamento de projetos, pintura industrial e proteção contra corrosão.',
+        'svc.more': 'Saiba Mais',
+
+        // Execution Scale
+        'scale.tag': 'Histórico',
+        'scale.title': 'Capacidade de Execução',
+        'scale.sub': 'Escala comprovada em construção e engenharia industrial na América Latina.',
+        'scale.steel': 'Toneladas em Estruturas',
+        'scale.pipe': 'Tubulação Instalada',
+        'scale.welds': 'Juntas Soldadas',
+        'scale.elect': 'Infraestrutura Elétrica',
+        'scale.value': 'Escala de Projetos',
+
+        // Projects
+        'proj.tag': 'Portfólio',
+        'proj.title': 'Projetos Selecionados',
+        'proj.sub': 'Entregando projetos industriais complexos no prazo, no orçamento e com os mais altos padrões de segurança.',
+        'proj.1.title': 'Montagem de Linha Industrial',
+        'proj.1.scope': 'Montagem eletromecânica completa de linhas de produção industrial incluindo estrutura metálica, tubulação e integração de sistemas elétricos.',
+        'proj.2.title': 'Revamp de Tanque de Combustível',
+        'proj.2.scope': 'Reabilitação completa de tanques de armazenamento de combustível incluindo substituição de chapas, sistemas de revestimento, prevenção contra incêndio e conformidade regulatória.',
+        'proj.3.title': 'Infraestrutura Ethernet Industrial',
+        'proj.3.scope': 'Implantação de backbone de fibra óptica e rede ethernet industrial em uma importante base de distribuição.',
+        'proj.badge': 'Industrial',
+
+        // Safety
+        'safe.tag': 'Segurança & Conformidade',
+        'safe.title': 'Segurança é Inegociável',
+        'safe.sub': 'Conformidade rigorosa com normas de segurança industrial em todas as operações. Tolerância zero para violações de segurança.',
+        'safe.nr10.desc': 'Total conformidade com normas de segurança elétrica para instalações e serviços em eletricidade.',
+        'safe.nr13.desc': 'Conformidade especializada para caldeiras, vasos de pressão e tanques de armazenamento em operações industriais.',
+        'safe.culture': 'Cultura de Segurança',
+        'safe.culture.desc': 'Diálogos diários de segurança, uso obrigatório de EPIs, registro de incidentes e programas contínuos de treinamento.',
+        'safe.qa': 'Garantia de Qualidade',
+        'safe.qa.desc': 'Sistemas de gestão de qualidade alinhados à ISO com procedimentos documentados e auditorias regulares.',
+        'safe.lti': 'Incidentes com Afastamento',
+        'safe.compliance': 'Conformidade de Segurança',
+        'safe.electrical': 'Segurança Elétrica',
+        'safe.boilers': 'Caldeiras e Vasos de Pressão',
+
+        // Operations Map
+        'map.tag': 'Cobertura',
+        'map.title': 'Onde Atuamos',
+        'map.sub': 'Presença operacional na América Latina com equipes regionais dedicadas.',
+        'map.brazil': 'Brasil',
+        'map.brazil.desc': 'Base principal de operações',
+        'map.paraguay': 'Paraguai',
+        'map.paraguay.desc': 'Empresa parceira',
+
+        // Delivery Reports
+        'reports.tag': 'Documentação',
+        'reports.title': 'Relatórios de Entrega',
+        'reports.sub': 'Acompanhamento completo com documentação estruturada em todas as etapas do projeto.',
+        'reports.1.title': 'Diário de Obra',
+        'reports.1.desc': 'Registro detalhado de atividades diárias, segurança do trabalho, equipamentos mobilizados e condições operacionais.',
+        'reports.2.title': 'Curva S de Progresso',
+        'reports.2.desc': 'Acompanhamento de progresso físico e financeiro com curva S planejada vs realizada e análise de desvios.',
+        'reports.3.title': 'Relatório Executivo',
+        'reports.3.desc': 'Dashboard consolidado com indicadores de MOD/MOI, produtividade, segurança e avanço físico do projeto.',
+
+        // Project Management
+        'pm.tag': 'Metodologia',
+        'pm.title': 'Controle de Projetos de Engenharia',
+        'pm.sub': 'Gerenciamento estruturado com visibilidade em tempo real de custos, cronograma e métricas de desempenho.',
+        'pm.1.title': 'Gestão de Cronograma',
+        'pm.1.desc': 'Gestão de cronograma nível IV com análise de caminho crítico e acompanhamento de etapas.',
+        'pm.2.title': 'Acompanhamento de Progresso',
+        'pm.2.desc': 'Monitoramento de progresso físico e financeiro com análise de valor agregado.',
+        'pm.3.title': 'Controle de Mão de Obra',
+        'pm.3.desc': 'Controle de homem-hora MOD e MOI, análise de produtividade e otimização de alocação de recursos.',
+        'pm.4.title': 'KPIs Personalizados',
+        'pm.4.desc': 'Indicadores-chave personalizados para cada escopo de projeto: segurança, qualidade e entrega.',
+        'pm.5.title': 'Relatórios Diários',
+        'pm.5.desc': 'Relatórios diários de obra com evidências fotográficas, registros de atividades e acompanhamento de pendências.',
+        'pm.6.title': 'Relatórios Executivos',
+        'pm.6.desc': 'Dashboards executivos e relatórios para comunicação com stakeholders e governança de projetos.',
+
+        // About
+        'about.tag': 'Sobre Nós',
+        'about.title': 'Sobre a LATAM Construções',
+        'about.p1': 'A LATAM Construções e Montagens Industriais oferece serviços de engenharia e construção industrial na América Latina. Com operações no Brasil e Paraguai, construímos uma reputação de excelência técnica, compromisso com segurança e execução confiável de projetos.',
+        'about.p2': 'Nossa equipe traz profunda expertise em montagem eletromecânica, revamp de tanques industriais, sistemas de tubulação e projetos de infraestrutura complexa.',
+        'about.pillar1': 'Disciplina de Engenharia',
+        'about.pillar2': 'Cultura de Segurança',
+        'about.pillar3': 'Normas Industriais',
+        'about.pillar4': 'Expertise Técnica',
+        'about.imgalt': 'Imagem da instalação industrial',
+
+        // Contact
+        'contact.tag': 'Fale Conosco',
+        'contact.title': 'Solicite uma Proposta Técnica',
+        'contact.sub': 'Entre em contato com nossa equipe de engenharia para discutir os requisitos do seu projeto. Fornecemos propostas técnicas detalhadas com escopo, cronograma e custos transparentes.',
+        'contact.email': 'E-mail',
+        'contact.phone': 'Telefone',
+        'contact.location': 'Localização',
+        'contact.form.name': 'Nome *',
+        'contact.form.name.ph': 'Nome completo',
+        'contact.form.company': 'Empresa *',
+        'contact.form.company.ph': 'Nome da empresa',
+        'contact.form.email': 'E-mail *',
+        'contact.form.phone': 'Telefone',
+        'contact.form.desc': 'Descrição do Projeto *',
+        'contact.form.desc.ph': 'Descreva o escopo, cronograma e requisitos do seu projeto...',
+        'contact.form.submit': 'Enviar Solicitação',
+        'contact.form.sent': 'Solicitação Enviada ✓',
+
+        // Footer
+        'footer.services': 'Serviços',
+        'footer.company': 'Empresa',
+        'footer.about': 'Sobre',
+        'footer.projects': 'Projetos',
+        'footer.safety': 'Segurança',
+        'footer.contact': 'Contato',
+        'footer.operations': 'Operações',
+        'footer.rights': 'Todos os direitos reservados.',
+        'footer.tagline': 'Engenharia e Construção Industrial',
+
+        // Floating CTA
+        'float.cta': 'Solicitar Proposta',
+    },
+
+    // ───────────────────────────────────────
+    // ESPAÑOL
+    // ───────────────────────────────────────
+    es: {
+        'nav.services': 'Servicios',
+        'nav.projects': 'Proyectos',
+        'nav.capabilities': 'Capacidad',
+        'nav.safety': 'Seguridad',
+        'nav.about': 'Nosotros',
+        'nav.contact': 'Contacto',
+        'nav.request': 'Solicitar Propuesta',
+
+        'hero.tag': 'Excelencia en Ingeniería',
+        'hero.h1.1': 'Ingeniería Industrial',
+        'hero.h1.2': 'y Construcción',
+        'hero.h1.3': 'con Entrega Comprobada',
+        'hero.sub': 'Montaje electromecánico, revamp de tanques y construcción industrial en toda América Latina. Confianza de los líderes de la industria.',
+        'hero.cta1': 'Solicitar Propuesta Técnica',
+        'hero.cta2': 'Agendar Consultoría',
+        'hero.years': 'Años de Experiencia',
+        'hero.tons': 'Toneladas Montadas',
+        'hero.welds': 'Juntas Soldadas',
+        'hero.countries': 'Países',
+
+        'trust.tag': 'Socios de Confianza',
+        'trust.title': 'Empresas Industriales que Confían en Nosotros',
+
+        'svc.tag': 'Lo Que Hacemos',
+        'svc.title': 'Servicios de Ingeniería Industrial',
+        'svc.sub': 'Capacidades completas de ingeniería y construcción industrial con precisión y seguridad en ambientes complejos.',
+        'svc.1.title': 'Montaje Electromecánico',
+        'svc.1.desc': 'Instalación electromecánica completa para plantas industriales, terminales de combustibles e instalaciones manufactureras.',
+        'svc.2.title': 'Montaje Mecánico',
+        'svc.2.desc': 'Montaje de estructuras metálicas, instalación de equipos pesados e integración de sistemas mecánicos.',
+        'svc.3.title': 'Revamp de Tanques Industriales',
+        'svc.3.desc': 'Rehabilitación completa de tanques incluyendo evaluación estructural, reemplazo de placas y cumplimiento regulatorio.',
+        'svc.4.title': 'Tuberías Industriales',
+        'svc.4.desc': 'Instalación, fabricación y pruebas de sistemas de tuberías industriales. Más de 30 km instalados.',
+        'svc.5.title': 'Infraestructura Eléctrica',
+        'svc.5.desc': 'Distribución de energía, cableado, instrumentación y sistemas de control. Fibra óptica integrada.',
+        'svc.6.title': 'Consultoría de Ingeniería',
+        'svc.6.desc': 'Consultoría técnica, soporte de comisionamiento, gestión de proyectos y protección anticorrosiva.',
+        'svc.more': 'Saber Más',
+
+        'scale.tag': 'Historial',
+        'scale.title': 'Capacidad de Ejecución',
+        'scale.sub': 'Escala comprobada en construcción e ingeniería industrial en América Latina.',
+        'scale.steel': 'Toneladas en Estructuras',
+        'scale.pipe': 'Tuberías Instaladas',
+        'scale.welds': 'Juntas Soldadas',
+        'scale.elect': 'Infraestructura Eléctrica',
+        'scale.value': 'Escala de Proyectos',
+
+        'proj.tag': 'Portafolio',
+        'proj.title': 'Proyectos Seleccionados',
+        'proj.sub': 'Entregando proyectos industriales complejos a tiempo, en presupuesto y con los más altos estándares de seguridad.',
+        'proj.1.title': 'Montaje de Línea Industrial',
+        'proj.1.scope': 'Montaje electromecánico completo de líneas de producción industrial.',
+        'proj.2.title': 'Revamp de Tanque de Combustible',
+        'proj.2.scope': 'Rehabilitación completa de tanques de almacenamiento de combustible.',
+        'proj.3.title': 'Infraestructura Ethernet Industrial',
+        'proj.3.scope': 'Despliegue de backbone de fibra óptica y red ethernet industrial.',
+        'proj.badge': 'Industrial',
+
+        'safe.tag': 'Seguridad y Cumplimiento',
+        'safe.title': 'La Seguridad es Innegociable',
+        'safe.sub': 'Cumplimiento riguroso con normas de seguridad industrial. Tolerancia cero para violaciones.',
+        'safe.nr10.desc': 'Cumplimiento total con normas de seguridad eléctrica.',
+        'safe.nr13.desc': 'Cumplimiento especializado para calderas, recipientes a presión y tanques.',
+        'safe.culture': 'Cultura de Seguridad',
+        'safe.culture.desc': 'Charlas diarias, EPP obligatorio, reporte de incidentes y capacitación continua.',
+        'safe.qa': 'Aseguramiento de Calidad',
+        'safe.qa.desc': 'Sistemas de gestión de calidad alineados a ISO con procedimientos documentados.',
+        'safe.lti': 'Incidentes con Tiempo Perdido',
+        'safe.compliance': 'Cumplimiento de Seguridad',
+        'safe.electrical': 'Seguridad Eléctrica',
+        'safe.boilers': 'Calderas y Recipientes a Presión',
+
+        'map.tag': 'Cobertura',
+        'map.title': 'Dónde Operamos',
+        'map.sub': 'Presencia operativa en América Latina con equipos regionales dedicados.',
+        'map.brazil': 'Brasil',
+        'map.brazil.desc': 'Base principal de operaciones',
+        'map.paraguay': 'Paraguay',
+        'map.paraguay.desc': 'Empresa asociada',
+
+        'reports.tag': 'Documentación',
+        'reports.title': 'Informes de Entrega',
+        'reports.sub': 'Seguimiento completo con documentación estructurada en todas las etapas del proyecto.',
+        'reports.1.title': 'Diario de Obra',
+        'reports.1.desc': 'Registro detallado de actividades diarias, seguridad laboral, equipos y condiciones operativas.',
+        'reports.2.title': 'Curva S de Progreso',
+        'reports.2.desc': 'Seguimiento de progreso físico y financiero con curva S planificada vs realizada.',
+        'reports.3.title': 'Informe Ejecutivo',
+        'reports.3.desc': 'Dashboard consolidado con indicadores de MOD/MOI, productividad y avance del proyecto.',
+
+        'pm.tag': 'Metodología',
+        'pm.title': 'Control de Proyectos de Ingeniería',
+        'pm.sub': 'Gestión estructurada con visibilidad en tiempo real de costos, cronograma y métricas.',
+        'pm.1.title': 'Gestión de Cronograma',
+        'pm.1.desc': 'Gestión de cronograma nivel IV con análisis de ruta crítica.',
+        'pm.2.title': 'Seguimiento de Progreso',
+        'pm.2.desc': 'Monitoreo de progreso físico y financiero con análisis de valor ganado.',
+        'pm.3.title': 'Control de Mano de Obra',
+        'pm.3.desc': 'Control de horas-hombre MOD y MOI, análisis de productividad.',
+        'pm.4.title': 'KPIs Personalizados',
+        'pm.4.desc': 'Indicadores clave personalizados para cada proyecto.',
+        'pm.5.title': 'Informes Diarios',
+        'pm.5.desc': 'Informes diarios de obra con evidencias fotográficas.',
+        'pm.6.title': 'Informes Ejecutivos',
+        'pm.6.desc': 'Dashboards ejecutivos para comunicación con stakeholders.',
+
+        'about.tag': 'Nosotros',
+        'about.title': 'Sobre LATAM Construções',
+        'about.p1': 'LATAM Construções e Montagens Industriais ofrece servicios de ingeniería y construcción industrial en América Latina. Con operaciones en Brasil y Paraguay.',
+        'about.p2': 'Nuestro equipo aporta profunda experiencia en montaje electromecánico y proyectos de infraestructura compleja.',
+        'about.pillar1': 'Disciplina de Ingeniería',
+        'about.pillar2': 'Cultura de Seguridad',
+        'about.pillar3': 'Normas Industriales',
+        'about.pillar4': 'Expertise Técnica',
+        'about.imgalt': 'Imagen de instalación industrial',
+
+        'contact.tag': 'Contáctenos',
+        'contact.title': 'Solicite una Propuesta Técnica',
+        'contact.sub': 'Contacte a nuestro equipo de ingeniería para discutir los requisitos de su proyecto.',
+        'contact.email': 'Correo',
+        'contact.phone': 'Teléfono',
+        'contact.location': 'Ubicación',
+        'contact.form.name': 'Nombre *',
+        'contact.form.name.ph': 'Nombre completo',
+        'contact.form.company': 'Empresa *',
+        'contact.form.company.ph': 'Nombre de la empresa',
+        'contact.form.email': 'Correo *',
+        'contact.form.phone': 'Teléfono',
+        'contact.form.desc': 'Descripción del Proyecto *',
+        'contact.form.desc.ph': 'Describa el alcance, cronograma y requisitos de su proyecto...',
+        'contact.form.submit': 'Enviar Solicitud',
+        'contact.form.sent': 'Solicitud Enviada ✓',
+
+        'footer.services': 'Servicios',
+        'footer.company': 'Empresa',
+        'footer.about': 'Nosotros',
+        'footer.projects': 'Proyectos',
+        'footer.safety': 'Seguridad',
+        'footer.contact': 'Contacto',
+        'footer.operations': 'Operaciones',
+        'footer.rights': 'Todos los derechos reservados.',
+        'footer.tagline': 'Ingeniería y Construcción Industrial',
+
+        'float.cta': 'Solicitar Propuesta',
+    },
+
+    // ───────────────────────────────────────
+    // ENGLISH
+    // ───────────────────────────────────────
+    en: {
+        'nav.services': 'Services',
+        'nav.projects': 'Projects',
+        'nav.capabilities': 'Capabilities',
+        'nav.safety': 'Safety',
+        'nav.about': 'About',
+        'nav.contact': 'Contact',
+        'nav.request': 'Request Proposal',
+
+        'hero.tag': 'Engineering Excellence',
+        'hero.h1.1': 'Industrial Engineering',
+        'hero.h1.2': 'and Construction',
+        'hero.h1.3': 'with Proven Delivery',
+        'hero.sub': 'Electromechanical assembly, tank revamp and industrial construction across Latin America. Trusted by industry leaders.',
+        'hero.cta1': 'Request Technical Proposal',
+        'hero.cta2': 'Schedule Consultation',
+        'hero.years': 'Years Experience',
+        'hero.tons': 'Tons Assembled',
+        'hero.welds': 'Welded Joints',
+        'hero.countries': 'Countries',
+
+        'trust.tag': 'Trusted Partners',
+        'trust.title': 'Trusted by Major Industrial Companies',
+
+        'svc.tag': 'What We Do',
+        'svc.title': 'Industrial Engineering Services',
+        'svc.sub': 'Comprehensive industrial engineering and construction capabilities delivered with precision and safety.',
+        'svc.1.title': 'Electromechanical Assembly',
+        'svc.1.desc': 'Complete electromechanical installation for industrial plants, fuel terminals, and manufacturing facilities.',
+        'svc.2.title': 'Mechanical Assembly',
+        'svc.2.desc': 'Structural steel erection, heavy equipment installation, and mechanical systems integration.',
+        'svc.3.title': 'Industrial Tank Revamp',
+        'svc.3.desc': 'Complete tank rehabilitation including structural assessment, plate replacement, and regulatory compliance.',
+        'svc.4.title': 'Industrial Piping',
+        'svc.4.desc': 'Installation, fabrication, and testing of industrial piping systems. Over 30 km installed.',
+        'svc.5.title': 'Electrical Infrastructure',
+        'svc.5.desc': 'Power distribution, cable routing, instrumentation, and control systems. Fiber optic integrated.',
+        'svc.6.title': 'Engineering Consulting',
+        'svc.6.desc': 'Technical consulting, commissioning support, project management, and corrosion protection.',
+        'svc.more': 'Learn More',
+
+        'scale.tag': 'Track Record',
+        'scale.title': 'Execution Capacity',
+        'scale.sub': 'Proven scale in industrial construction and engineering across Latin America.',
+        'scale.steel': 'Tons Steel Structures',
+        'scale.pipe': 'Piping Installed',
+        'scale.welds': 'Welded Joints',
+        'scale.elect': 'Electrical Infrastructure',
+        'scale.value': 'Project Scale',
+
+        'proj.tag': 'Portfolio',
+        'proj.title': 'Selected Projects',
+        'proj.sub': 'Delivering complex industrial projects on schedule, on budget, and to the highest safety standards.',
+        'proj.1.title': 'Industrial Line Assembly',
+        'proj.1.scope': 'Complete electromechanical assembly of industrial production lines including structural steel, piping, and electrical systems.',
+        'proj.2.title': 'Fuel Tank Revamp',
+        'proj.2.scope': 'Full rehabilitation of fuel storage tanks including plate replacement, coating systems, and regulatory compliance.',
+        'proj.3.title': 'Industrial Ethernet Infrastructure',
+        'proj.3.scope': 'Fiber optic backbone and industrial ethernet network deployment across a major distribution facility.',
+        'proj.badge': 'Industrial',
+
+        'safe.tag': 'Safety & Compliance',
+        'safe.title': 'Safety is Non-Negotiable',
+        'safe.sub': 'Rigorous compliance with industrial safety standards. Zero tolerance for safety violations.',
+        'safe.nr10.desc': 'Full compliance with electrical safety standards for installations and services.',
+        'safe.nr13.desc': 'Specialized compliance for boilers, pressure vessels, and storage tanks.',
+        'safe.culture': 'Safety Culture',
+        'safe.culture.desc': 'Daily safety briefings, PPE enforcement, incident reporting, and continuous training.',
+        'safe.qa': 'Quality Assurance',
+        'safe.qa.desc': 'ISO-aligned quality management systems with documented procedures.',
+        'safe.lti': 'Lost Time Incidents',
+        'safe.compliance': 'Safety Compliance',
+        'safe.electrical': 'Electrical Safety',
+        'safe.boilers': 'Boilers & Pressure Vessels',
+
+        'map.tag': 'Coverage',
+        'map.title': 'Where We Operate',
+        'map.sub': 'Operational presence across Latin America with dedicated regional teams.',
+        'map.brazil': 'Brazil',
+        'map.brazil.desc': 'Primary operations hub',
+        'map.paraguay': 'Paraguay',
+        'map.paraguay.desc': 'Partner company',
+
+        'reports.tag': 'Documentation',
+        'reports.title': 'Delivery Reports',
+        'reports.sub': 'Complete tracking with structured documentation at every project stage.',
+        'reports.1.title': 'Daily Construction Report',
+        'reports.1.desc': 'Detailed record of daily activities, safety compliance, mobilized equipment, and site conditions.',
+        'reports.2.title': 'S-Curve Progress',
+        'reports.2.desc': 'Physical and financial progress tracking with planned vs actual S-curve and deviation analysis.',
+        'reports.3.title': 'Executive Report',
+        'reports.3.desc': 'Consolidated dashboard with MOD/MOI indicators, productivity, safety, and project advancement.',
+
+        'pm.tag': 'Methodology',
+        'pm.title': 'Engineering Project Control',
+        'pm.sub': 'Structured project management with real-time visibility into cost, schedule, and performance.',
+        'pm.1.title': 'Schedule Management',
+        'pm.1.desc': 'Level IV schedule management with critical path analysis and milestone tracking.',
+        'pm.2.title': 'Progress Tracking',
+        'pm.2.desc': 'Physical and financial progress monitoring with earned value analysis.',
+        'pm.3.title': 'Labor Control',
+        'pm.3.desc': 'MOD and MOI labor hour tracking, productivity analysis, and resource optimization.',
+        'pm.4.title': 'Custom KPIs',
+        'pm.4.desc': 'Tailored key performance indicators for each project scope.',
+        'pm.5.title': 'Daily Reports',
+        'pm.5.desc': 'Comprehensive daily construction reports with photographic evidence.',
+        'pm.6.title': 'Executive Reports',
+        'pm.6.desc': 'High-level executive dashboards for stakeholder communication.',
+
+        'about.tag': 'About Us',
+        'about.title': 'About LATAM Construções',
+        'about.p1': 'LATAM Construções e Montagens Industriais delivers industrial engineering and construction services across Latin America. With operations in Brazil and Paraguay.',
+        'about.p2': 'Our team brings deep expertise in electromechanical assembly and complex infrastructure projects.',
+        'about.pillar1': 'Engineering Discipline',
+        'about.pillar2': 'Safety Culture',
+        'about.pillar3': 'Industrial Standards',
+        'about.pillar4': 'Technical Expertise',
+        'about.imgalt': 'Industrial facility image',
+
+        'contact.tag': 'Get in Touch',
+        'contact.title': 'Request a Technical Proposal',
+        'contact.sub': 'Contact our engineering team to discuss your project requirements.',
+        'contact.email': 'Email',
+        'contact.phone': 'Phone',
+        'contact.location': 'Location',
+        'contact.form.name': 'Name *',
+        'contact.form.name.ph': 'Full name',
+        'contact.form.company': 'Company *',
+        'contact.form.company.ph': 'Company name',
+        'contact.form.email': 'Email *',
+        'contact.form.phone': 'Phone',
+        'contact.form.desc': 'Project Description *',
+        'contact.form.desc.ph': 'Describe your project scope, timeline, and requirements...',
+        'contact.form.submit': 'Send Request',
+        'contact.form.sent': 'Request Sent ✓',
+
+        'footer.services': 'Services',
+        'footer.company': 'Company',
+        'footer.about': 'About',
+        'footer.projects': 'Projects',
+        'footer.safety': 'Safety',
+        'footer.contact': 'Contact',
+        'footer.operations': 'Operations',
+        'footer.rights': 'All rights reserved.',
+        'footer.tagline': 'Industrial Engineering & Construction',
+
+        'float.cta': 'Request Proposal',
+    },
+};

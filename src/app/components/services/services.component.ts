@@ -129,7 +129,7 @@ export class ServicesComponent {
           img: 'images/assets/revamp/revamp-card.jpg',
           details: [
             {
-              img: 'images/assets/oque-fazemos/instalacoes-industriais/i1.png',
+              img: 'images/assets/revamp/revamp-card.jpg',
               valor: 'R$ 10,2 M', tempo: '12 meses', funcionarios: '49 diretos',
               bullets: [
                 'Integração e instalação de equipamentos industriais, tubulações de processo e sistemas elétricos',

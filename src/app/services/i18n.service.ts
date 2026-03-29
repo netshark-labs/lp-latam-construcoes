@@ -197,6 +197,26 @@ const translations: Record<Lang, Record<string, string>> = {
 
         // Floating CTA
         'float.cta': 'Solicitar Proposta',
+
+        // Parceria Aclive
+        'part.badge': 'Parceria Comercial',
+        'part.title': 'LATAM Vende Aclive Elevadores',
+        'part.desc': 'Empresa especializada em soluções completas para elevadores e plataformas de acessibilidade, incluindo:',
+        'part.sol.title': 'Especialidades',
+        'part.sol.1': 'Consultoria técnica',
+        'part.sol.2': 'Instalação e Manutenção',
+        'part.sol.3': 'Manutenção preventiva e corretiva',
+        'part.sol.4': 'Modernização e Embelezamento',
+        'part.sol.5': 'Reposição de peças originais',
+        'part.dif.title': 'Diferenciais',
+        'part.dif.1': 'Relatórios técnicos e laudos assinados por engenheiro',
+        'part.dif.2': 'Manutenção preventiva com foco em redução de falhas',
+        'part.dif.3': 'Atendimento 24h e suporte emergencial',
+        'part.dif.4': 'Equipe técnica qualificada',
+        'part.svc.title': 'Serviços Adicionais',
+        'part.svc.1': 'Instalação de elevadores',
+        'part.svc.2': 'Instalação de plataformas de acessibilidade',
+        'part.svc.3': 'Modernização técnica e estética',
     },
 
     // ───────────────────────────────────────
@@ -349,6 +369,26 @@ const translations: Record<Lang, Record<string, string>> = {
         'footer.tagline': 'Ingeniería y Construcción Industrial',
 
         'float.cta': 'Solicitar Propuesta',
+
+        // Parceria Aclive
+        'part.badge': 'Asociación Comercial',
+        'part.title': 'LATAM Vende Aclive Elevadores',
+        'part.desc': 'Empresa especializada en soluciones completas para ascensores y plataformas de accesibilidad, incluyendo:',
+        'part.sol.title': 'Especialidades',
+        'part.sol.1': 'Consultoría técnica',
+        'part.sol.2': 'Instalación y Mantenimiento',
+        'part.sol.3': 'Mantenimiento preventivo y correctivo',
+        'part.sol.4': 'Modernización y Embellecimiento',
+        'part.sol.5': 'Recambios de piezas originales',
+        'part.dif.title': 'Diferenciadores',
+        'part.dif.1': 'Informes técnicos y certificados firmados por ingeniero',
+        'part.dif.2': 'Mantenimiento con foco en la reducción de fallos',
+        'part.dif.3': 'Atención 24h y soporte de emergencia',
+        'part.dif.4': 'Equipo técnico cualificado',
+        'part.svc.title': 'Servicios Adicionales',
+        'part.svc.1': 'Instalación de ascensores',
+        'part.svc.2': 'Instalación de plataformas de accesibilidad',
+        'part.svc.3': 'Modernización técnica y estética',
     },
 
     // ───────────────────────────────────────
@@ -501,5 +541,25 @@ const translations: Record<Lang, Record<string, string>> = {
         'footer.tagline': 'Industrial Engineering & Construction',
 
         'float.cta': 'Request Proposal',
+
+        // Parceria Aclive
+        'part.badge': 'Commercial Partner',
+        'part.title': 'LATAM Sells Aclive Elevators',
+        'part.desc': 'Company specialized in complete solutions for elevators and accessibility platforms, including:',
+        'part.sol.title': 'Core Solutions',
+        'part.sol.1': 'Technical consulting',
+        'part.sol.2': 'Installation and Maintenance',
+        'part.sol.3': 'Preventive and corrective maintenance',
+        'part.sol.4': 'Modernization and Aesthetics',
+        'part.sol.5': 'Original parts replacement',
+        'part.dif.title': 'Differentiators',
+        'part.dif.1': 'Technical reports signed by an engineer',
+        'part.dif.2': 'Preventive maintenance focused on failure reduction',
+        'part.dif.3': '24/7 service and emergency support',
+        'part.dif.4': 'Qualified technical team',
+        'part.svc.title': 'Additional Services',
+        'part.svc.1': 'Elevator installation',
+        'part.svc.2': 'Accessibility platform installation',
+        'part.svc.3': 'Technical and aesthetic modernization',
     },
 };

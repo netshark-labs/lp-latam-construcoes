@@ -200,8 +200,8 @@ const translations: Record<Lang, Record<string, string>> = {
 
         // Parceria Aclive
         'part.badge': 'Parceria Comercial',
-        'part.title': 'LATAM Vende Aclive Elevadores',
-        'part.desc': 'Empresa especializada em soluções completas para elevadores e plataformas de acessibilidade, incluindo:',
+        'part.title': 'LATAM ENGENHARIA "vende", ACLIVE ELEVADORES (empresa parceira)',
+        'part.desc': 'Trabalhamos com os COMPONENTES que equipam as principais marcas de elevadores do mercado.',
         'part.sol.title': 'Especialidades',
         'part.sol.1': 'Consultoria técnica',
         'part.sol.2': 'Instalação e Manutenção',
@@ -372,8 +372,8 @@ const translations: Record<Lang, Record<string, string>> = {
 
         // Parceria Aclive
         'part.badge': 'Asociación Comercial',
-        'part.title': 'LATAM Vende Aclive Elevadores',
-        'part.desc': 'Empresa especializada en soluciones completas para ascensores y plataformas de accesibilidad, incluyendo:',
+        'part.title': 'LATAM INGENIERÍA "vende", ASCENSORES ACLIVE (empresa asociada)',
+        'part.desc': 'Trabajamos con los COMPONENTES que equipan las principales marcas de ascensores del mercado.',
         'part.sol.title': 'Especialidades',
         'part.sol.1': 'Consultoría técnica',
         'part.sol.2': 'Instalación y Mantenimiento',
@@ -544,8 +544,8 @@ const translations: Record<Lang, Record<string, string>> = {
 
         // Parceria Aclive
         'part.badge': 'Commercial Partner',
-        'part.title': 'LATAM Sells Aclive Elevators',
-        'part.desc': 'Company specialized in complete solutions for elevators and accessibility platforms, including:',
+        'part.title': 'LATAM ENGINEERING "sells", ACLIVE ELEVATORS (partner company)',
+        'part.desc': 'We work with the COMPONENTS that equip the main elevator brands in the market.',
         'part.sol.title': 'Core Solutions',
         'part.sol.1': 'Technical consulting',
         'part.sol.2': 'Installation and Maintenance',

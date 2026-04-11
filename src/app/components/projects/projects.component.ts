@@ -123,6 +123,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   ];
   
   acliveImages = [
+    'images/assets/aclive/5.jpg',
     'images/assets/aclive/2.jpg',
     'images/assets/aclive/1.jpg',
     'images/assets/aclive/3.jpg',
